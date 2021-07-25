@@ -6,7 +6,11 @@ const PORT = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+const morgan = require('morgan')
 
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 //env file
 
 const logger = require('./lib/logger')
@@ -24,9 +28,20 @@ app
     
     const showRoutes = require("./routes/index.js");
     const userRouter = require('./routes/users.js')
+    const blogsRouter = require('./routes/blogs.js')
 
+
+    server.use(express.json())
+    server.use(cookieParser())
+    server.use(cors())
+    server.use(morgan('dev'))
+
+
+    //routes
     server.use("/api/index", showRoutes(server));
     server.use("/api/user", userRouter(server));
+    server.use("/api/blogs", blogsRouter(server));
+
     
     server.get("*", (req, res) => {
       return handle(req, res);

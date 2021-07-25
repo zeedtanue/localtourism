@@ -9,11 +9,21 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bulma": "^0.9.3",
+    "cookie-parser": "^1.4.5",
+    "cookieparser": "^0.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
     "next": "11.0.1",
+    "passport": "^0.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   }

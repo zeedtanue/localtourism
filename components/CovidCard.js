@@ -7,7 +7,18 @@ const CovidCard = () => {
     const [covidData,setCovidData]= React.useState({})
 
     const readData= async()=>{
+        const getForm={
+            method: "GET",
+            headers:
+               {
+                   "Authorization": "Basic emVlZHRhbnVlQGdtYWlsLmNvbTp0YW16ZWVkNTUyMQ==",
+                    'X-Requested-With': 'XMLHttpRequest',
+
+               },
+            url:"https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?folder_id=3586628"
+        }
         const {data} = await axios.get("https://corona.lmao.ninja/v2/countries/Malaysia?yesterday=false&strict=true&query")
+        
         setFlag(data.countryInfo.flag)
         setCovidData(data)
     }

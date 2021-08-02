@@ -1,6 +1,8 @@
 const express = require("express");
 const next = require("next");
 const db = require("./config/db");
+const mongoose = require('mongoose')
+
 
 const PORT = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -14,7 +16,9 @@ const bodyParser = require('body-parser')
 //env file
 
 const logger = require('./lib/logger')
-
+// mongoose.connect("mongodb+srv://tamzeed:tamzeed5521@cluster0.zdqjo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true})
+//   .then(() => logger.info('Database Connected!'))
+//   .catch(err => logger.error(err));
 
 app
   .prepare()
@@ -30,17 +34,17 @@ app
     const userRouter = require('./routes/users.js')
     const blogsRouter = require('./routes/blogs.js')
 
-
-    server.use(express.json())
-    server.use(cookieParser())
-    server.use(cors())
     server.use(morgan('dev'))
+    server.use(cookieParser())
+    server.use(express.json())
+    server.use(express.urlencoded({ extended: false}))
+    server.use(cors())
 
 
     //routes
     server.use("/api/index", showRoutes(server));
     server.use("/api/user", userRouter(server));
-    server.use("/api/blogs", blogsRouter(server));
+    server.use("/api/blogs", blogsRouter(server) );
 
     
     server.get("*", (req, res) => {
@@ -52,7 +56,9 @@ app
       logger.info(`> Ready on ${PORT}`);
     });
   })
+  
   .catch(ex => {
-    console.error(ex.stack);
+    logger.error(ex.stack);
+    //console.error(ex.stack);
     process.exit(1);
   });

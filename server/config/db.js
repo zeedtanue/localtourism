@@ -7,6 +7,7 @@ mongoose.set('useNewUrlParser', true)
 
 mongoose.connect("mongodb+srv://tamzeed:tamzeed5521@cluster0.zdqjo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",(err,db)=>{
     if(err){
+        console.log(err)
         throw(err)
     }
 });

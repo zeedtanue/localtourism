@@ -1,14 +1,21 @@
 const express = require("express");
 const router = express.Router();
-
+const blogsController = require('../controller/blogs')
 function routes(app) {
   
   
+  router.post("/category", blogsController.createCategory)
+  router.get("/category",blogsController.getCategory)
+
+  router.get("/:folder_id",blogsController.processBlogs)
+  router.post("/:folder_id",blogsController.postBlogs)
+
+
+
+  router.get("/", blogsController.getAllBlogs)
+
   
-  router.get("/", (req, res) => {
-    res.end("We made it! And it's great");
-  });
-  
+
   
   return router;
 };

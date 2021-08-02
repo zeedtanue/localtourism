@@ -12,7 +12,7 @@ const BlogSectionFirst = ({data}) => {
                     <div className="columns">
                     <div className="column is-8 is-offset-2">
                         <figure className="image is-16by9">
-                        <img src={data[0].article_image} alt=""/>
+                        <img src={item.article_image} alt=""/>
                         </figure>
                     </div>
                     </div>

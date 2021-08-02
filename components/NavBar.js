@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
+import Link from 'next/link'
 
 
 const NavBar = () => {
@@ -26,7 +27,9 @@ const NavBar = () => {
             
             <nav className="navbar">
                 <div className="container">
+                    <Link passHref href={"/"}>
                 <div className="navbar-brand">
+                    
                     <a className="navbar-item is-size-4 has-text-weight-bold" href="../">
                     Let's Go
                     </a>
@@ -36,6 +39,7 @@ const NavBar = () => {
                     <span></span>
                     </span>
                 </div>
+                </Link>
                 <div id="navbarMenu" className="navbar-menu">
                     <div className="navbar-end">
                     <div className=" navbar-item">
@@ -46,15 +50,15 @@ const NavBar = () => {
                         </span>
                     </div>
                     </div>
-                    <a className="navbar-item is-active is-size-5 has-text-weight-semibold">
-                        Home
-                    </a>
+                    
 
                     {category.map((item)=>
-                    <a className="navbar-item is-size-5 has-text-weight-semibold">
+                    <Link passHref href={`/blogs/${item.name}/${item.folder}`}>
+                        <a className="navbar-item is-size-5 has-text-weight-semibold">
 
-                        {item.name}
-                    </a>
+                            {item.name}
+                        </a>
+                    </Link>
                     )}
                     </div>
                 </div>

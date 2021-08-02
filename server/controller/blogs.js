@@ -30,6 +30,19 @@ exports.getCategory = async(req, res)=>{
     }
 }
 
+exports.getOneCategory = async(req,res)=>{
+    try {
+        const category = await Category.findOne({"folder":req.params.folder_id})
+        if(category) return res.status(200).json(category)
+        else return res.status(404).json({message:"Not found"})
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(error.message)
+        
+    }
+}
+
 
 exports.processBlogs = async(req, res)=>{
     try {

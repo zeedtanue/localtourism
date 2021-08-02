@@ -6,6 +6,7 @@ function routes(app) {
   
   router.post("/category", blogsController.createCategory)
   router.get("/category",blogsController.getCategory)
+  router.get("/category/:folder_id",blogsController.getOneCategory)
 
   router.get("/:folder_id",blogsController.processBlogs)
   router.post("/:folder_id",blogsController.postBlogs)

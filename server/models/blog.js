@@ -9,6 +9,10 @@ const siteDetailsSchema= mongoose.Schema({
     site_name   :   {type:String},
     site_link:   {type:String}
 })
+const commentSchema = mongoose.Schema({
+    email   :   {typr:String},
+    comment :   {type:String}
+})
 
 const blogSchema = mongoose.Schema({
     feed_id     :   {type:String,required:true},
@@ -19,8 +23,8 @@ const blogSchema = mongoose.Schema({
     published   :   {type:Date},
     article_image:  {type:String},
     author      :   [authorSchema],
-    site_detals :   {siteDetailsSchema}
-
+    site_detals :   {siteDetailsSchema},
+    comments    :   [{commentSchema}]
 
 })
 

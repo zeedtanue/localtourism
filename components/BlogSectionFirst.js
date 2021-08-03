@@ -1,12 +1,17 @@
 import moment from 'moment'
+import Link from 'next/link'
 import React from 'react'
 import ShortContent from './Blog/ShortContent'
 
 const BlogSectionFirst = ({data}) => {
     return (
         <div>
+
             {data.slice(0,1).map(item=>
+            
             <section className="hero ">
+                <a href={`/blogs/${item._id}/${item.title}`}>
+
                 <div className="hero-body">
                 <div className="container">
                 
@@ -43,6 +48,7 @@ const BlogSectionFirst = ({data}) => {
 
                 </div>
                 </div>
+                </a>
             </section>
                                     )}
 

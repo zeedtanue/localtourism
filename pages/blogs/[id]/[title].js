@@ -77,8 +77,12 @@ const BlogsDetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="content article-body">
-                            {blogContent.content}
+                        <div  class="content article-body">
+                        <figure className="image is-16by9">
+                            <img src={blogContent.article_image} alt=""/>
+                        </figure>
+                        <div dangerouslySetInnerHTML={{__html: blogContent.content}} />
+                        <p>Original Source:<a href={blogContent.permalink}> {blogContent.permalink}</a></p>
                         </div>
                     </div>
                 </div>

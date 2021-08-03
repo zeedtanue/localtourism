@@ -94,3 +94,13 @@ exports.getAllBlogs= async(req,res)=>{
         return res.status(500).json(error.message)
     }
 }
+
+exports.getOneBlog= async(req,res)=>{
+    try {
+        const blog = await Blog.findOne({"_id":req.params.id})
+        if(blog) return res.status(200).json(blog)
+        else return res.status(404).json({message:"Not found"})
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+}

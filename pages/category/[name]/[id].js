@@ -5,6 +5,7 @@ import Head from 'next/head'
 import styles from '../../../styles/Blogs.module.css'
 import BlogsList from '../../../components/BlogsList'
 import axios from 'axios'
+import HeroSection from '../../../components/HeroSection'
 
 
 export default function Blogs() {
@@ -38,14 +39,8 @@ export default function Blogs() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className={styles.main}>
-                <h1 className={styles.title}>
-                Welcome to <a href="https://nextjs.org">{name}</a>
-                </h1>
-
-                <p className={styles.description}>
-                Encouraging Local Tourism
-                </p>
+            <main className={styles}>
+                <HeroSection title={`Welcome to Let's Go My|| ${name}`} description="Encouraging Local Tourism"/>
                 <BlogsList data={blogs}/>
             </main>
 

@@ -1,5 +1,6 @@
 import moment from 'moment'
 import React from 'react'
+import ShortContent from './Blog/ShortContent'
 
 const BlogSectionFirst = ({data}) => {
     return (
@@ -24,7 +25,7 @@ const BlogSectionFirst = ({data}) => {
                                 <h2 className="subtitle is-4"> {moment(item.published).format("MMMM DD, YYYY")} </h2>
                                 <h1 className="title"> {item.title} </h1>
                                 <p>
-                                {item.content.slice(0,250)}.. <a>Continue Reading</a>
+                                    <ShortContent item={item}/>
                                 </p>
                             </div>
                             </div>

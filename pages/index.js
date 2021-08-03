@@ -6,6 +6,7 @@ import axios from 'axios'
 import BlogCarousel from '../components/BlogCarousel'
 import BlogSectionFirst from '../components/BlogSectionFirst'
 import BlogSectionSecond from '../components/BlogSectionSecond'
+import HeroSection from '../components/HeroSection'
 
 export default function Home() {
 
@@ -38,14 +39,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="/">Let's Go!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Encouraging Local Tourism
-        </p>
+      <main >
+        <HeroSection title={`Welcome to Let's Go MY`} description="Encouraging local tourism"/>
+        
 
 
       <BlogSectionFirst data={allData}/>

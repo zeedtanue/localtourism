@@ -1,4 +1,5 @@
 import moment from 'moment'
+import ShortContent from './Blog/ShortContent'
 const BlogsList = ({data}) => {
     return (
         <div>
@@ -14,9 +15,7 @@ const BlogsList = ({data}) => {
                             <div className="content is-medium">
                                 <h2 className="subtitle is-4"> {moment(item.published).format("MMMM DD, YYYY")} </h2>
                                 <h1 className="title"> {item.title} </h1>
-                                <p>
-                                {item.content.slice(0,250)}.. <a>Continue Reading</a>
-                                </p>
+                                <ShortContent item={item}/>
                             </div>
                             </div>
                         </div>

@@ -11,6 +11,7 @@ function routes(app) {
   router.get("/:folder_id",blogsController.processBlogs)
   router.post("/:folder_id",blogsController.postBlogs)
 
+  router.get("/single/:id", blogsController.getOneBlog)
 
 
   router.get("/", blogsController.getAllBlogs)

@@ -53,7 +53,7 @@ const NavBar = () => {
                     
 
                     {category.map((item)=>
-                    <Link passHref href={`/blogs/${item.name}/${item.folder}`}>
+                    <Link passHref href={`/category/${item.name}/${item.folder}`}>
                         <a className="navbar-item is-size-5 has-text-weight-semibold">
 
                             {item.name}

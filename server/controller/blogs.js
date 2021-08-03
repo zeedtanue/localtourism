@@ -104,3 +104,20 @@ exports.getOneBlog= async(req,res)=>{
         return res.status(500).json(error.message)
     }
 }
+
+exports.getRecom= async(req,res)=>{
+    try {
+        const db= await Blog.findOne({_id:req.params.id})
+        if(db) {
+            const recommendation = await Blog.aggregate([{ $match:{folder:db.folder}},{$sample:{size:2}}])
+            return res.status(200).json(recommendation)}
+        else return res.status(404).json({message:"Not found"})
+
+        
+
+    } catch (error) {
+        return res.status(500).json(error.message)
+
+        
+    }
+}

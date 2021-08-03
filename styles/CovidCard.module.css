@@ -1,0 +1,10 @@
+.covidContainer{
+    display: flex;
+    z-index: 10;
+    position:absolute; 
+    margin-right: 20px;
+    margin-top: 20px;  
+    top: 1;
+    right: 0;
+    height: 47vh;
+}

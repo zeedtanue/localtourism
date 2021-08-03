@@ -10,7 +10,7 @@ const BlogSectionFirst = ({data}) => {
             {data.slice(0,1).map(item=>
             
             <section className="hero ">
-                <a href={`/blogs/${item._id}/${item.title}`}>
+                <a href={`/blogs/${item._id}/`}>
 
                 <div className="hero-body">
                 <div className="container">

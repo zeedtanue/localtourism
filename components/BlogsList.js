@@ -14,7 +14,7 @@ const BlogsList = ({data}) => {
                             <div className="column is-8 is-offset-2">
                             <div className="content is-medium">
                                 <h2 className="subtitle is-4"> {moment(item.published).format("MMMM DD, YYYY")} </h2>
-                                <h1 className="title"> {item.title} </h1>
+                                <a href={`/blogs/${item._id}/`}><h1 className="title"> {item.title} </h1></a>
                                 <ShortContent item={item}/>
                             </div>
                             </div>

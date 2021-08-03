@@ -1,14 +1,20 @@
 import React, {useEffect,useState} from 'react'
 import Head from 'next/head'
-
+import Error from 'next/error'
 import {useRouter} from 'next/router'
-import HeroSection from '../../../components/HeroSection'
+import HeroSection from '../../components/HeroSection'
 import axios from 'axios'
 import moment from 'moment'
+import styles from '../../styles/Blogs.module.css'
+import BlogSectionSecond from '../../components/BlogSectionSecond'
+import RecommendationCard from '../../components/Blog/RecommendationCard'
 const BlogsDetails = () => {
 
     const {query} =useRouter()
-    const { id, title } = query;
+    const { id } = query;
+    const [loading,setLoading]=useState(true)
+    const [error,setError]=useState(false)
+    const [recom,setRecom]= useState([])
 
     const [blogContent,setBlogContent] = useState(
         {
@@ -22,36 +28,57 @@ const BlogsDetails = () => {
         )
     
     const readData= async()=>{
-        const form= {
-            method:'GET',
-            url: `/api/blogs/single/${id}`
-        }
-        const {data}= await axios(form)
 
-        setBlogContent({...blogContent, 
-            title:data.title,
-            author:data.author,
-            article_image:data.article_image,
-            permalink:data.permalink,
-            content:data.content,
-            published:data.published
-        })
-        console.log(blogContent)
+        try {
+            setLoading(true)
+            const form= {
+                method:'GET',
+                url: `/api/blogs/single/${id}`
+            }
+            const {data}= await axios(form)
+            const recomForm= {
+                method:'GET',
+                url: `/api/blogs/recommendation/${id}`
+            }
+            const recomData = await axios(recomForm)
+            setRecom([...recom,...recomData.data])
+        console.log(recom)
+
+            setBlogContent({...blogContent, 
+                title:data.title,
+                author:data.author,
+                article_image:data.article_image,
+                permalink:data.permalink,
+                content:data.content,
+                published:data.published
+            })
+            setLoading(false)
+            console.log(blogContent)
+            
+        } catch (error) {
+            console.log(error.response.data)
+            setError(true)
+            
+        }
+
+
 
     }
 
     useEffect(()=>{
         readData()
-    },[id])
+    },[query])
 
 
 
 
     return (
+        <>
+            {error && <Error/>}
 
         <div>
             <Head>
-                <title>{title}- Let's Go MY!</title>
+                <title>{blogContent.title}- Let's Go MY!</title>
                 <meta name="description" content="Malaysian Local Travel Tourism Lifestyle Food" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -70,7 +97,7 @@ const BlogsDetails = () => {
                                 <p class="title article-title"> {blogContent.title} </p>
                                 <div class="tags has-addons level-item">
                                     {blogContent.author.map(item=>
-                                        <span class="tag is-rounded is-info"> {item.name}</span>
+                                        <span key={item._id} class="tag is-rounded is-info"> {item.name}</span>
                                         
                                         )}
                                     <span class="tag is-rounded">{moment(blogContent.published).format('ll')}</span>
@@ -89,8 +116,15 @@ const BlogsDetails = () => {
         </div>
         </section>
         </div>
+
+        <div className={styles.recomContainer} >
+            <h4 className="title article-title">Similar Like This</h4>
+            <RecommendationCard data={recom}/>
+            
+        </div>
         </main>
         </div>
+        </>
 
     )
 }

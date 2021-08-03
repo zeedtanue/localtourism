@@ -13,6 +13,7 @@ function routes(app) {
 
   router.get("/single/:id", blogsController.getOneBlog)
 
+  router.get('/recommendation/:id',blogsController.getRecom)
 
   router.get("/", blogsController.getAllBlogs)
 

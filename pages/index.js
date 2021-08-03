@@ -7,6 +7,7 @@ import BlogCarousel from '../components/BlogCarousel'
 import BlogSectionFirst from '../components/BlogSectionFirst'
 import BlogSectionSecond from '../components/BlogSectionSecond'
 import HeroSection from '../components/HeroSection'
+import CovidCard from '../components/CovidCard'
 
 export default function Home() {
 
@@ -39,8 +40,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main >
-        <HeroSection title={`Welcome to Let's Go MY`} description="Encouraging local tourism"/>
+      <main  className={styles.container}>
+        <HeroSection title={`Welcome to Let's Go`} description="Encouraging local tourism"/>
+      <CovidCard/>
+
         
 
 
@@ -49,7 +52,6 @@ export default function Home() {
       <section class="hero ">
     <div class="hero-body">
       <div class="container">
-
 
       <BlogSectionSecond data={allData} />
       <BlogSectionSecond data={allData}/>

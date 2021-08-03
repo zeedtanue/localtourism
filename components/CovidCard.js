@@ -1,22 +1,16 @@
 import React from 'react'
+import styles from '../styles/CovidCard.module.css'
 import axios from 'axios'
 import moment from 'moment'
+
+
 const CovidCard = () => {
 
     const [flag,setFlag]= React.useState("")
     const [covidData,setCovidData]= React.useState({})
 
     const readData= async()=>{
-        const getForm={
-            method: "GET",
-            headers:
-               {
-                   "Authorization": "Basic emVlZHRhbnVlQGdtYWlsLmNvbTp0YW16ZWVkNTUyMQ==",
-                    'X-Requested-With': 'XMLHttpRequest',
-
-               },
-            url:"https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?folder_id=3586628"
-        }
+        
         const {data} = await axios.get("https://corona.lmao.ninja/v2/countries/Malaysia?yesterday=false&strict=true&query")
         
         setFlag(data.countryInfo.flag)
@@ -27,6 +21,7 @@ const CovidCard = () => {
     },[])
 
     return (
+        <div className={styles.covidContainer}>
         <div className="card">
             <div className="card-content">
                 <div className="content">
@@ -78,6 +73,7 @@ const CovidCard = () => {
                             <p> {moment(covidData.updated).format("dddd, MMMM, Do YYYY")} </p>
 
                         </div>
+            </div>
             </div>
             </div>
     )

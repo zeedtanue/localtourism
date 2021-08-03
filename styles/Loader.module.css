@@ -1,0 +1,13 @@
+.loaderContainer{
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    position: relative;
+    top: 0;
+    height: 100vh;
+}
+.loaderContainer img{
+    display: inline-block;
+    margin: auto;
+    width: 200px;
+}

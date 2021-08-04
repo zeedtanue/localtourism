@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
+import Search from './Search'
 
 
 const NavBar = () => {
@@ -25,7 +26,7 @@ const NavBar = () => {
     return (
         <div>
             
-            <nav className="navbar">
+            <nav className="navbar is-info">
                 <div className="container">
                     <Link passHref href={"/"}>
                 <div className="navbar-brand">
@@ -43,12 +44,7 @@ const NavBar = () => {
                 <div id="navbarMenu" className="navbar-menu">
                     <div className="navbar-end">
                     <div className=" navbar-item">
-                        <div className="control has-icons-left">
-                        <input className="input is-rounded" type="email" placeholder="Search"/>
-                        <span className="icon is-left">
-                            <i className="fa fa-search"></i>
-                        </span>
-                    </div>
+                       <Search/>
                     </div>
                     
 

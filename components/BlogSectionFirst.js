@@ -5,11 +5,11 @@ import ShortContent from './Blog/ShortContent'
 
 const BlogSectionFirst = ({data}) => {
     return (
-        <div>
+        <div className="card">
 
             {data.slice(0,1).map(item=>
             
-            <section className="hero ">
+            <section className=" cardd-media hero ">
                 <a href={`/blogs/${item._id}/`}>
 
                 <div className="hero-body">

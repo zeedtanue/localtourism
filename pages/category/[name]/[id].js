@@ -40,7 +40,7 @@ export default function Blogs() {
             </Head>
 
             <main className={styles}>
-                <HeroSection title={`Welcome to Let's Go My|| ${name}`} description="Encouraging Local Tourism"/>
+                <HeroSection title={`Welcome to Let's Go My | ${name}`} description="Encouraging Local Tourism"/>
                 <BlogsList data={blogs}/>
             </main>
 

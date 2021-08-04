@@ -118,7 +118,7 @@ const BlogsDetails = () => {
         </div>
 
         <div className={styles.recomContainer} >
-            <h4 className="title article-title">Similar Like This</h4>
+            <h1 className="title article-title">Similar Like This</h1>
             <RecommendationCard data={recom}/>
             
         </div>

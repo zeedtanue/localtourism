@@ -14,7 +14,7 @@ function routes(app) {
   router.get("/single/:id", blogsController.getOneBlog)
 
   router.get('/recommendation/:id',blogsController.getRecom)
-
+  router.get('/search/:searchTerm', blogsController.searchTerm)
   router.get("/", blogsController.getAllBlogs)
 
   

@@ -46,16 +46,20 @@ export default function Home() {
 
         
 
-
       <BlogSectionFirst data={allData}/>
 
       <section class="hero ">
+        <div className={styles.main}>
     <div class="hero-body">
       <div class="container">
+        <div className={styles.title}>
+        <h1 className="title article-title">Recently Added</h1>
+        </div>
 
       <BlogSectionSecond data={allData} />
       <BlogSectionSecond data={allData}/>
       </div>
+    </div>
     </div>
   </section>
 

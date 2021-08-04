@@ -17,6 +17,14 @@ function routes(app) {
   router.get('/search/:searchTerm', blogsController.searchTerm)
   router.get("/", blogsController.getAllBlogs)
 
+
+
+
+
+  //comments blog
+  router.get("/single/:id/comments", blogsController.getComments)
+  router.post("/single/:id/comments", blogsController.postComment)
+
   
 
   

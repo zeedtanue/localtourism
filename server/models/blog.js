@@ -24,7 +24,7 @@ const blogSchema = mongoose.Schema({
     article_image:  {type:String},
     author      :   [authorSchema],
     site_detals :   {siteDetailsSchema},
-    comments    :   [{commentSchema}]
+    comments    :   [{type: mongoose.Schema.Types.ObjectId,ref:'comment'}]
 
 })
 

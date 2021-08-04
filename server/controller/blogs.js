@@ -1,6 +1,7 @@
 const axios = require('axios')
 const Category = require('../models/category.js')
 const Blog = require('../models/blog.js')
+const Comment = require('../models/comment')
 
 exports.createCategory = async(req, res)=>{
     const body= req.body
@@ -121,6 +122,42 @@ exports.getRecom= async(req,res)=>{
         
     }
 }
+
+exports.getComments = async(req,res)=>{
+    try {
+        const comment = await Comment.find({"blog":req.params.id})
+         return res.status(200).json(comment)
+    } catch (error) {
+        return res.status(500).json(error.message)
+
+        
+    }
+}
+
+
+exports.postComment = async(req,res)=>{
+    try {
+         const newComment = new Comment({
+            blog    :   req.params.id,
+            email   :   req.body.email,
+            comment :   req.body.comment
+         })
+         const commentDB= await newComment.save()
+
+         return res.status(200).json(commentDB)
+        
+    } catch (error) {
+        console.log(error)
+
+        return res.status(500).json(error.message)
+
+        
+    }
+}
+
+
+
+
 
 exports.searchTerm = async(req,res)=>{
     try {

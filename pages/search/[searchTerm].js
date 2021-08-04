@@ -28,7 +28,12 @@ export default function SearchPage (){
             <div className={styles.title}>
                 <h3 className="title article-title">Showing result of: {searchTerm}</h3>
             </div>
+            {searchResult.length==0?
+                <h1 className={styles.title}>No result found</h1>
+                :
             <BlogsList data={searchResult} />
+
+        }
 
             
         </div>

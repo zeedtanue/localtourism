@@ -75,3 +75,14 @@
   .recomContainer h4{
     top: 0;
   }
+
+
+  .commentContainer{
+    font-size: 1rem;
+    padding-bottom: 5%;
+
+  }
+  .comment{
+    font-size: 1rem;
+    padding-left: 5%;
+  }

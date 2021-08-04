@@ -8,6 +8,7 @@ import moment from 'moment'
 import styles from '../../styles/Blogs.module.css'
 import BlogSectionSecond from '../../components/BlogSectionSecond'
 import RecommendationCard from '../../components/Blog/RecommendationCard'
+import Comment from '../../components/Comment'
 const BlogsDetails = () => {
 
     const {query} =useRouter()
@@ -53,7 +54,7 @@ const BlogsDetails = () => {
                 published:data.published
             })
             setLoading(false)
-            console.log(blogContent)
+
             
         } catch (error) {
             console.log(error.response.data)
@@ -111,6 +112,7 @@ const BlogsDetails = () => {
                         <div dangerouslySetInnerHTML={{__html: blogContent.content}} />
                         <p>Original Source:<a href={blogContent.permalink}> {blogContent.permalink}</a></p>
                         </div>
+                        <Comment id={id} />
                     </div>
                 </div>
         </div>

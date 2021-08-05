@@ -1,6 +1,5 @@
 import React, {useEffect,useState} from 'react'
 import Head from 'next/head'
-import Error from 'next/error'
 import {useRouter} from 'next/router'
 import HeroSection from '../../../components/HeroSection'
 import axios from 'axios'
@@ -8,35 +7,17 @@ import moment from 'moment'
 import styles from '../../../styles/Blogs.module.css'
 import RecommendationCard from '../../../components/Blog/RecommendationCard'
 import Comment from '../../../components/Comment'
-const BlogsDetails = () => {
+const BlogsDetails = ({content,article_image,title,author,permalink,published, recomendations}) => {
 
     const {query} =useRouter()
-    const { id,title } = query;
-    const urlOfPage= useRouter()
-    const [loading,setLoading]=useState(true)
-    const [error,setError]=useState(false)
+    const { id } = query;
     const [recom,setRecom]= useState([])
 
-    const [blogContent,setBlogContent] = useState(
-        {
-            title:"",
-            author:[],
-            article_image:"",
-            permalink:"",
-            content:"",
-            published:""
-        }
-        )
     
     const readData= async()=>{
 
         try {
-            setLoading(true)
-            const form= {
-                method:'GET',
-                url: `/api/blogs/single/${id}`
-            }
-            const {data}= await axios(form)
+           
             const recomForm= {
                 method:'GET',
                 url: `/api/blogs/recommendation/${id}`
@@ -45,20 +26,8 @@ const BlogsDetails = () => {
             setRecom([...recom,...recomData.data])
         console.log(recom)
 
-            setBlogContent({...blogContent, 
-                title:data.title,
-                author:data.author,
-                article_image:data.article_image,
-                permalink:data.permalink,
-                content:data.content,
-                published:data.published
-            })
-            setLoading(false)
-
-            console.log(urlOfPage.asPath(_id))
         } catch (error) {
-            setError(true)
-            
+            console.log(error)
         }
 
 
@@ -68,9 +37,6 @@ const BlogsDetails = () => {
     useEffect(()=>{
         readData()
     },[query])
-
-
-
 
     return (
         <>
@@ -89,9 +55,9 @@ const BlogsDetails = () => {
                 <meta name="twitter:card" content="summary" />
                 <meta
                 property="og:description"
-                content={blogContent.content}
+                content={content}
                 />
-                <meta property="og:image" content={`https://letsgomy.herokuapp.com/logo_main.png`} />
+                <meta property="og:image" content={article_image} />
 
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -107,22 +73,22 @@ const BlogsDetails = () => {
                     <div class="card-content">
                         <div class="media">
                             <div class="media-content has-text-centered">
-                                <p class="title article-title"> {blogContent.title} </p>
+                                <p class="title article-title"> {title} </p>
                                 <div class="tags has-addons level-item">
-                                    {blogContent.author.map(item=>
+                                    {author.map(item=>
                                         <span key={item._id} class="tag is-rounded is-info"> {item.name}</span>
                                         
                                         )}
-                                    <span class="tag is-rounded">{moment(blogContent.published).format('ll')}</span>
+                                    <span class="tag is-rounded">{moment(published).format('ll')}</span>
                                 </div>
                             </div>
                         </div>
                         <div  class="content article-body">
                         <figure className="image is-16by9">
-                            <img src={blogContent.article_image} alt=""/>
+                            <img src={article_image} alt=""/>
                         </figure>
-                        <div dangerouslySetInnerHTML={{__html: blogContent.content}} />
-                        <p>Original Source:<a href={blogContent.permalink}> {blogContent.permalink}</a></p>
+                        <div dangerouslySetInnerHTML={{__html: content}} />
+                        <p>Original Source:<a href={permalink}> {permalink}</a></p>
                         </div>
                         <Comment id={id} />
                     </div>
@@ -144,3 +110,31 @@ const BlogsDetails = () => {
 }
 
 export default BlogsDetails
+export const getServerSideProps = async (context) => {
+    const {id} = context.query
+    let content = null;
+    let article_image=null;
+    let title=null;
+    let author=null;
+    let permalink=null;
+    let published=null;
+
+
+
+    await fetch(`https://letsgomy.herokuapp.com/api/blogs/single/${id}`)
+      .then((response) => response.json())
+      .then((json) =>{
+        content=json.content
+        article_image=json.article_image
+        title=json.title
+        author=json.author
+        permalink=json.permalink
+        published=json.published
+      })
+  
+    return {
+      props: {
+        content,article_image,title,author,permalink,published,
+      },
+    };
+  };

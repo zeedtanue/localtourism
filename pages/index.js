@@ -11,20 +11,13 @@ import RecommendationCard from '../components/Blog/RecommendationCard'
 import moment from 'moment'
 import Loader from '../components/Loader'
 
-export default function Home() {
+export default function Home({firstTenBlogs}) {
 
   const [allData,setAllData] = useState([])
   const [loading, setLoading]= useState(false)
 
   const readData = async()=>{
-    setLoading(true)
-    const form= {
-      method: 'GET',
-      url: '/api/blogs'
-    }
-    const {data} = await axios(form)
-    setAllData(data)
-    setLoading(false)
+    
 
       const today = (moment(Date.now()).format('YYYY-MM-DD')) 
 
@@ -47,7 +40,6 @@ export default function Home() {
       data: {newData}
   }
   const lets= await axios(postBlog)
-  console.log(newData)
 
 
 
@@ -79,7 +71,7 @@ export default function Home() {
         <div>
         
 
-          <BlogSectionFirst data={allData}/>
+          <BlogSectionFirst data={firstTenBlogs}/>
 
             <div className={styles.main}>
               <div class="container">
@@ -87,8 +79,8 @@ export default function Home() {
                   <h1 className="title article-title">Recently Added</h1>
                 </div>
           
-                <RecommendationCard data={allData.slice(1,4)}/>
-                <RecommendationCard data={allData.slice(4,7)}/>
+                <RecommendationCard data={firstTenBlogs.slice(1,4)}/>
+                <RecommendationCard data={firstTenBlogs.slice(4,7)}/>
 
               </div>
               </div>
@@ -100,3 +92,21 @@ export default function Home() {
     </div>
   )
 }
+
+
+export const getServerSideProps = async () => {
+  let firstTenBlogs = []
+  await fetch('https://letsgomy.herokuapp.com/api/blogs')
+    .then((response) => response.json())
+    .then((json) =>{
+      json.forEach(element => {
+        firstTenBlogs.push(element)
+      });
+    })
+
+  return {
+    props: {
+      firstTenBlogs,
+    },
+  };
+};

@@ -55,7 +55,7 @@ const BlogsDetails = ({content,article_image,title,author,permalink,published, r
                 <meta name="twitter:card" content="summary" />
                 <meta
                 property="og:description"
-                content={content}
+                content={`Malaysian Local tourism, lifestyle and food `}
                 />
                 <meta property="og:image" content={article_image} />
 

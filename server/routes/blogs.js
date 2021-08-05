@@ -11,12 +11,13 @@ function routes(app) {
   router.get("/:folder_id",blogsController.processBlogs)
   router.post("/:folder_id",blogsController.postBlogs)
 
+
   router.get("/single/:id", blogsController.getOneBlog)
 
   router.get('/recommendation/:id',blogsController.getRecom)
   router.get('/search/:searchTerm', blogsController.searchTerm)
   router.get("/", blogsController.getAllBlogs)
-
+  router.post("/",blogsController.postBlogsGeneral)
 
 
 

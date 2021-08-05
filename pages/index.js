@@ -3,7 +3,6 @@ import Head from 'next/head'
 
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
-import BlogCarousel from '../components/BlogCarousel'
 import BlogSectionFirst from '../components/BlogSectionFirst'
 import BlogSectionSecond from '../components/BlogSectionSecond'
 import HeroSection from '../components/HeroSection'

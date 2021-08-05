@@ -12,15 +12,15 @@ const test = () => {
                     'X-Requested-With': 'XMLHttpRequest',
 
                },
-            url:"https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?folder_id=3586643"
+            url:"https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?limit=500"
         }
         const getBlogs=await axios(getForm)
-        
+        console.log(getBlogs)
         let data=getBlogs.data.data
         //passing the data as an array 
         const postBlog={
             method:"POST",
-            url:"/api/blogs/3586643",
+            url:"/api/blogs/",
             data: {data}
         }
         const newRes= await axios(postBlog)

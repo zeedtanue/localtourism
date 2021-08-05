@@ -47,7 +47,7 @@ exports.getOneCategory = async(req,res)=>{
 
 exports.processBlogs = async(req, res)=>{
     try {
-        const blogs = await Blog.find({folder:req.params.folder_id})
+        const blogs = await Blog.find({folder:req.params.folder_id}).sort({'published':-1})
         
        
         return res.status(200).json(blogs)
@@ -89,7 +89,7 @@ exports.postBlogs= async(req,res)=>{
 }
 exports.getAllBlogs= async(req,res)=>{
     try {
-        const blogsDB= await Blog.find()
+        const blogsDB= await Blog.find().sort({'published':-1})
         return res.status(200).json(blogsDB)
     } catch (error) {
         return res.status(500).json(error.message)
@@ -156,7 +156,37 @@ exports.postComment = async(req,res)=>{
 }
 
 
-
+exports.postBlogsGeneral= async(req,res)=>{
+    try {
+        const data = req.body.data
+        const dataToSave= []
+        data.forEach(async(item)=>{
+            const existingFeed= await Blog.findOne({title:item.title})
+            
+            if(!existingFeed){
+                let newBlog = new Blog({
+                    feed_id  :   item.feed_id,
+                    folder   :   item.folder_id[0],
+                    title    :   item.title,
+                    permalink:   item.permalink,
+                    content  :   item.content,
+                    published:   item.published,
+                    article_image:item.article_image,
+                    author   :   item.author,
+                    site_detals: item.site_detals
+                })
+                const newDB= await newBlog.save()
+                console.log(newDB)
+            }else console.log('sad')
+            
+        })
+        const blogs = await Blog.find()
+        return res.status(200).json(blogs.length)
+        
+    } catch (error) {
+        
+    }
+}
 
 
 exports.searchTerm = async(req,res)=>{

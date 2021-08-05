@@ -50,9 +50,7 @@ const Comment = ({id}) => {
     const onSubmitActionm=async (event)=>{
         event.preventDefault()
         setErrors(validation(postComment))
-        // if(postComment.email==="") setEmailerror(true)
-        // else if(postComment.comment==="") setCommentError(true)
-        // else{
+        
         if(!errors.email && !errors.comment){
             
             const form= document.getElementById("commentForm")

@@ -80,6 +80,9 @@ const BlogsDetails = () => {
             <Head>
                 <title>{title}- Let's Go MY!</title>
                 <meta name="description" content="Malaysian Local Travel Tourism Lifestyle Food" />
+                <meta property="og:type" content='website'/>
+                <meta property="og:title" content={title}/>
+
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             

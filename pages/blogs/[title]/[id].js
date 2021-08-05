@@ -74,9 +74,8 @@ const BlogsDetails = () => {
 
     return (
         <>
-            {error && <Error/>}
 
-        <div>
+        
             <Head>
                 <title>{title}- Let's Go MY!</title>
                 <meta name="description" content="Malaysian Local Travel Tourism Lifestyle Food" />
@@ -127,7 +126,7 @@ const BlogsDetails = () => {
             
         </div>
         </main>
-        </div>
+        
         </>
 
     )

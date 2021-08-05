@@ -23,7 +23,7 @@ const BlogSectionSecond = ({data, total}) => {
                 <h1 class="title post-title">{item.title}</h1>
                 <ShortContent item={item} />
                 <br/>
-                <a href={`/blogs/${item._id}`} class="button is-info">Read More</a>
+                <a href={`/blogs/${item.title}/${item._id}`} class="button is-info">Read More</a>
               </div>
             </article>
           </div>

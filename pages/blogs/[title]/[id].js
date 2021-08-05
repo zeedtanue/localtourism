@@ -2,17 +2,16 @@ import React, {useEffect,useState} from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import {useRouter} from 'next/router'
-import HeroSection from '../../components/HeroSection'
+import HeroSection from '../../../components/HeroSection'
 import axios from 'axios'
 import moment from 'moment'
-import styles from '../../styles/Blogs.module.css'
-import BlogSectionSecond from '../../components/BlogSectionSecond'
-import RecommendationCard from '../../components/Blog/RecommendationCard'
-import Comment from '../../components/Comment'
+import styles from '../../../styles/Blogs.module.css'
+import RecommendationCard from '../../../components/Blog/RecommendationCard'
+import Comment from '../../../components/Comment'
 const BlogsDetails = () => {
 
     const {query} =useRouter()
-    const { id } = query;
+    const { id,title } = query;
     const [loading,setLoading]=useState(true)
     const [error,setError]=useState(false)
     const [recom,setRecom]= useState([])
@@ -79,7 +78,7 @@ const BlogsDetails = () => {
 
         <div>
             <Head>
-                <title>{blogContent.title}- Let's Go MY!</title>
+                <title>{title}- Let's Go MY!</title>
                 <meta name="description" content="Malaysian Local Travel Tourism Lifestyle Food" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

@@ -89,7 +89,7 @@ exports.postBlogs= async(req,res)=>{
 }
 exports.getAllBlogs= async(req,res)=>{
     try {
-        const blogsDB= await Blog.find().sort({'published':-1})
+        const blogsDB= await Blog.find().sort({'published':-1}).limit(10)
         return res.status(200).json(blogsDB)
     } catch (error) {
         return res.status(500).json(error.message)

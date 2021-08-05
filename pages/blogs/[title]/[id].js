@@ -84,12 +84,12 @@ const BlogsDetails = () => {
                 <meta property="fb:app_id" content="your fb app id" />
                 <meta
                 property="og:title"
-                content="Social Media Preview Working?"
+                content={title}
                 />
                 <meta name="twitter:card" content="summary" />
                 <meta
                 property="og:description"
-                content="Hurray!! Yes Social Media Preview is Working"
+                content={blogContent.content}
                 />
                 <meta property="og:image" content={`https://letsgomy.herokuapp.com/logo_main.png`} />
 

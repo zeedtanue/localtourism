@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import Search from './Search'
+import Image from 'next/image'
 
 
 const NavBar = () => {
@@ -31,7 +32,7 @@ const NavBar = () => {
                     <Link passHref href={"/"}>
                 <div className="navbar-brand">
                     
-                    <a className="navbar-item is-size-4 has-text-weight-bold" href="../">
+                    <a className="navbar-item is-size-2 has-text-weight-bold" href="../">
                     Let's Go
                     </a>
                     <span className="navbar-burger burger" data-target="navbarMenu">

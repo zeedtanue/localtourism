@@ -11,7 +11,7 @@ const CovidCard = () => {
 
     const readData= async()=>{
         
-        const {data} = await axios.get("https://corona.lmao.ninja/v2/countries/Malaysia?yesterday=false&strict=true&query")
+        const {data} = await axios.get("https://corona.lmao.ninja/v2/countries/Malaysia?yesterday=true&strict=true&query")
         
         setFlag(data.countryInfo.flag)
         setCovidData(data)
@@ -70,7 +70,7 @@ const CovidCard = () => {
                     
                 </div>
                 <div className="card-footer-border-top subtitle is-7">
-                            <p> {moment(covidData.updated).format("dddd, MMMM, Do YYYY")} </p>
+                            <p>Updated:{moment(covidData.updated).format("dddd, MMMM, Do YYYY")} </p>
 
                         </div>
             </div>

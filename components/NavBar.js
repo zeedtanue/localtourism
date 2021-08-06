@@ -27,7 +27,7 @@ const NavBar = () => {
     return (
         <div>
             
-            <nav className="navbar is-info">
+            <nav className="navbar is-info is-bold">
                 <div className="container">
                     <Link passHref href={"/"}>
                 <div className="navbar-brand">

@@ -7,9 +7,12 @@ import moment from 'moment'
 import styles from '../../../styles/Blogs.module.css'
 import RecommendationCard from '../../../components/Blog/RecommendationCard'
 import Comment from '../../../components/Comment'
+import ShareButton from '../../../components/ShareButton'
+
+
 const BlogsDetails = ({content,article_image,title,author,permalink,published, recomendations}) => {
 
-    const {query} =useRouter()
+    const {query,asPath} =useRouter()
     const { id } = query;
     const [recom,setRecom]= useState([])
 
@@ -61,7 +64,7 @@ const BlogsDetails = ({content,article_image,title,author,permalink,published, r
 
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            
+
             <main>
             <HeroSection title="Welcome to Let's Go MY" description="Encouraging local tourism"/>
 
@@ -90,6 +93,11 @@ const BlogsDetails = ({content,article_image,title,author,permalink,published, r
                         <div dangerouslySetInnerHTML={{__html: content}} />
                         <p>Original Source:<a href={permalink}> {permalink}</a></p>
                         </div>
+                        
+                            <ShareButton url={asPath} />
+
+
+
                         <Comment id={id} />
                     </div>
                 </div>
@@ -119,7 +127,7 @@ export const getServerSideProps = async (context) => {
     let permalink=null;
     let published=null;
 
-    
+
 
     await fetch(`https://letsgomy.herokuapp.com/api/blogs/single/${id}`)
       .then((response) => response.json())

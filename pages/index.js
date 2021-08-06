@@ -13,7 +13,6 @@ import Loader from '../components/Loader'
 
 export default function Home({firstTenBlogs}) {
 
-  const [allData,setAllData] = useState([])
   const [loading, setLoading]= useState(false)
 
   const readData = async()=>{
@@ -38,8 +37,8 @@ export default function Home({firstTenBlogs}) {
       method:"POST",
       url:"/api/blogs/",
       data: {newData}
-  }
-  const lets= await axios(postBlog)
+    }
+    await axios(postBlog)
 
 
 
@@ -95,61 +94,15 @@ export default function Home({firstTenBlogs}) {
 
 
 export const getServerSideProps = async () => {
-  const today = (moment(Date.now()).format('YYYY-MM-DD')) 
-
   let firstTenBlogs = []
-
-  const newBlogsForm={
-    method: "GET",
-    headers:
-       {
-           "Authorization": "Basic emVlZHRhbnVlQGdtYWlsLmNvbTp0YW16ZWVkNTUyMQ==",
-            'X-Requested-With': 'XMLHttpRequest',
-
-       },
-    url:`https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?feed_entry_created=2021-08-04`
-
-    }
-    const {data} = await axios(newBlogsForm)
-    await fetch(`https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?feed_entry_created=${today}`,{
-      method: 'GET',
-      headers:{
-        "Authorization": "Basic emVlZHRhbnVlQGdtYWlsLmNvbTp0YW16ZWVkNTUyMQ==",
-         'X-Requested-With': 'XMLHttpRequest',
-
-    }
-
+  
+  await fetch('https://letsgomy.herokuapp.com/api/blogs')
+    .then((response) => response.json())
+    .then((json) =>{
+      json.forEach(element => {
+        firstTenBlogs.push(element)
+      });
     })
-    .then((response)=>response.json())
-    .then((json)=>{
-      json.forEach(elem=>{
-        firstTenBlogs.push(elem)
-      })
-    })
-
-    
-    // const postBlog={
-    //   method:"POST",
-    //   url:"/api/blogs/",
-    //   data: {data}
-    // }
-    // const response= await axios(postBlog)
-
-    // response.data.forEach(element => {
-    //   firstTenBlogs.push(element)
-    // });
-
-
-
-
-
-  // await fetch('https://letsgomy.herokuapp.com/api/blogs')
-  //   .then((response) => response.json())
-  //   .then((json) =>{
-  //     json.forEach(element => {
-  //       firstTenBlogs.push(element)
-  //     });
-  //   })
 
   return {
     props: {

@@ -119,7 +119,7 @@ export const getServerSideProps = async (context) => {
     let permalink=null;
     let published=null;
 
-
+    
 
     await fetch(`https://letsgomy.herokuapp.com/api/blogs/single/${id}`)
       .then((response) => response.json())

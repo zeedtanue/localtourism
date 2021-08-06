@@ -3,6 +3,7 @@ import CovidCard from '../components/CovidCard'
 import axios from 'axios'
 
 const test = () => {
+    const [allData, setAllData]= useState([])
     const readData= async()=>{
         const getForm={
             method: "GET",
@@ -12,7 +13,7 @@ const test = () => {
                     'X-Requested-With': 'XMLHttpRequest',
 
                },
-            url:"https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?limit=500"
+            url:"https://gentle-springs-11097.herokuapp.com/https://www.feedspot.com/v1/entries.json?feed_entry_created=2021-08-04"
         }
         const getBlogs=await axios(getForm)
         console.log(getBlogs)
@@ -25,6 +26,7 @@ const test = () => {
         }
         const newRes= await axios(postBlog)
         console.log(newRes.data)
+        setAllData(newRes.data)
 
     }
     // const readData=async()=>{
@@ -49,6 +51,8 @@ const test = () => {
             <CovidCard/>
             <div>
                 <p>test</p>
+                {allData.map(item=><p>{item.id}</p>)}
+
             </div>
         </div>
     )

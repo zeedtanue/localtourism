@@ -159,7 +159,7 @@ exports.postComment = async(req,res)=>{
 exports.postBlogsGeneral= async(req,res)=>{
     try {
         const data = req.body.data
-        const dataToSave= []
+        
         data.forEach(async(item)=>{
             const existingFeed= await Blog.findOne({title:item.title})
             
@@ -180,8 +180,8 @@ exports.postBlogsGeneral= async(req,res)=>{
             }else console.log('sad')
             
         })
-        const blogs = await Blog.find()
-        return res.status(200).json(blogs.length)
+        const blogs = await Blog.find().sort({'published':-1}).limit(10)
+        return res.status(200).json(blogs)
         
     } catch (error) {
         
